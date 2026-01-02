@@ -3,7 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>About Us - A to B Lawn Care LLC</title>
+
+  <!-- SEO Title + Description -->
+  <title>About A to B Lawn Care LLC | Jacksonville, FL Lawn Care Company</title>
+  <meta name="description" content="Learn about A to B Lawn Care LLC, a family-owned and veteran-operated lawn care company serving Jacksonville, FL. We provide reliable weekly and bi-weekly lawn mowing, landscape maintenance, fertilization, and property cleanups throughout Duval and St. Johns counties." />
+
+  <!-- Location hints -->
+  <meta name="geo.region" content="US-FL" />
+  <meta name="geo.placename" content="Jacksonville" />
+
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -11,7 +19,7 @@
     <div class="logo">A to B <span>Lawn Care LLC</span></div>
     <nav>
       <a href="index.html">Home</a>
-      <a href="about.html">About</a>
+      <a href="about.html" aria-current="page">About</a>
       <a href="services.html">Services</a>
       <a href="gallery.html">Gallery</a>
       <a href="contact.html">Contact</a>
@@ -19,12 +27,105 @@
   </header>
 
   <section class="hero">
-    <h1>About Us</h1>
-    <p>We’re a veteran and family-run business proudly serving Jacksonville, FL. At A to B Lawn Care, we treat your lawn like our own — dependable, affordable, and done right.</p>
+    <h1>About A to B Lawn Care LLC</h1>
+    <p>
+      A to B Lawn Care LLC is a <strong>family-owned and veteran-operated lawn care company in Jacksonville, FL</strong>.
+      We proudly serve homeowners, rental properties, commercial clients, and HOAs throughout
+      <strong>Duval County</strong> and <strong>St. Johns County</strong>.
+    </p>
   </section>
+
+  <main class="about-content">
+    <section>
+      <h2>Who We Are</h2>
+      <p>
+        Founded on reliability, attention to detail, and honest service, A to B Lawn Care LLC was built to provide
+        consistent, professional lawn care you can depend on. As a family-run business with military values,
+        we take pride in showing up on time, communicating clearly, and doing the job right every visit.
+      </p>
+    </section>
+
+    <section>
+      <h2>What Sets Us Apart</h2>
+      <p>
+        We understand that your lawn is part of your home’s first impression. That’s why we focus on
+        clean results, dependable scheduling, and long-term relationships with our customers.
+      </p>
+      <ul>
+        <li>Family-owned and veteran-operated</li>
+        <li>Consistent weekly and bi-weekly service options</li>
+        <li>Professional equipment and clean workmanship</li>
+        <li>Clear communication and fair pricing</li>
+        <li>Respect for your property and your time</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Our Services</h2>
+      <p>
+        We provide a full range of lawn and landscape maintenance services, including:
+      </p>
+      <ul>
+        <li>Weekly and bi-weekly lawn mowing</li>
+        <li>Edging, trimming, and blowing</li>
+        <li>Shrub and hedge trimming</li>
+        <li>Landscape bed maintenance and mulch installation</li>
+        <li>Landscape bed weed control (beds only)</li>
+        <li>Granular fertilization</li>
+        <li>Yard cleanups and overgrown property cleanups</li>
+      </ul>
+      <p>
+        Our services are tailored to each property’s needs and are performed in accordance with
+        Florida regulations and best practices.
+      </p>
+    </section>
+
+    <section>
+      <h2>Our Service Area</h2>
+      <p>
+        A to B Lawn Care LLC proudly provides professional lawn care services in:
+      </p>
+      <ul>
+        <li>Jacksonville, FL</li>
+        <li>Duval County</li>
+        <li>St. Johns County</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Get Started</h2>
+      <p>
+        Whether you’re looking for ongoing lawn maintenance or a one-time cleanup, we’d be happy to help.
+        Contact us today to discuss your property and receive a customized quote.
+      </p>
+      <p>
+        <strong>Call or Text:</strong> 904-651-5711<br/>
+        <strong>Email:</strong> alex@atoblawncare.org
+      </p>
+    </section>
+  </main>
 
   <footer>
     <p>&copy; 2025 A to B Lawn Care LLC | 904-651-5711 | alex@atoblawncare.org</p>
   </footer>
+
+  <!-- LocalBusiness structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "A to B Lawn Care LLC",
+    "telephone": "+1-904-651-5711",
+    "email": "alex@atoblawncare.org",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Jacksonville",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    },
+    "areaServed": ["Jacksonville, FL", "Duval County, FL", "St. Johns County, FL"],
+    "url": "https://YOUR-DOMAIN-HERE.com"
+  }
+  </script>
 </body>
 </html>

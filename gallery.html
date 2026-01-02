@@ -3,8 +3,54 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Gallery - A to B Lawn Care LLC</title>
+
+  <!-- SEO Title + Description -->
+  <title>Gallery | Lawn Care Results in Jacksonville, FL | A to B Lawn Care LLC</title>
+  <meta name="description" content="View lawn care results from A to B Lawn Care LLC in Jacksonville, FL. See examples of weekly and bi-weekly lawn mowing, edging, trimming, cleanups, and landscape maintenance across Duval and St. Johns counties." />
+
+  <!-- Location hints -->
+  <meta name="geo.region" content="US-FL" />
+  <meta name="geo.placename" content="Jacksonville" />
+
   <link rel="stylesheet" href="style.css"/>
+
+  <!-- Optional: simple gallery layout (won't break your site) -->
+  <style>
+    .gallery-wrap{ max-width: 1000px; margin: 0 auto; padding: 0 16px 40px; }
+    .gallery-grid{
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+    @media (max-width: 900px){ .gallery-grid{ grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (max-width: 520px){ .gallery-grid{ grid-template-columns: 1fr; } }
+    .gallery-grid figure{
+      margin: 0;
+      background: #fff;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+      overflow: hidden;
+    }
+    .gallery-grid img{
+      width: 100%;
+      height: 260px;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-grid figcaption{
+      padding: 10px 12px;
+      font-size: 12px;
+      color: #6b7280;
+    }
+    .gallery-cta{
+      margin-top: 22px;
+      padding: 14px 16px;
+      background: #f7f7f8;
+      border: 1px solid #e5e7eb;
+      border-radius: 14px;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -13,21 +59,86 @@
       <a href="index.html">Home</a>
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
-      <a href="gallery.html">Gallery</a>
+      <a href="gallery.html" aria-current="page">Gallery</a>
       <a href="contact.html">Contact</a>
     </nav>
   </header>
 
   <section class="hero">
-    <h1>Gallery</h1>
-    <p>Check out our before-and-after transformations!</p>
-    <img src="lawn-1.jpeg" alt="grass stripes">
-    <img src="lawn-2.jpeg" alt="grass stripes">
-    <img src="lawn-3.jpeg" alt="grass stripes">
+    <h1>Lawn Care Results in Jacksonville, FL</h1>
+    <p>
+      Here are a few examples of our work across Jacksonville and surrounding areas.
+      We provide weekly and bi-weekly lawn mowing, edging, trimming, cleanups, and landscape maintenance
+      throughout <strong>Duval</strong> and <strong>St. Johns</strong> counties.
+    </p>
   </section>
+
+  <main class="gallery-wrap">
+    <div class="gallery-grid">
+      <figure>
+        <img src="lawn-1.jpeg" alt="Freshly mowed lawn with stripes after weekly lawn service in Jacksonville, FL">
+        <figcaption>Fresh cut with clean edges and striped finish.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="lawn-2.jpeg" alt="Lawn mowing and edging results on a residential property in Jacksonville, FL">
+        <figcaption>Mow, edge, trim, and blow — clean lines on hard edges.</figcaption>
+      </figure>
+
+      <figure>
+        <img src="lawn-3.jpeg" alt="Finished lawn after mowing service in Jacksonville, FL with clean curb line">
+        <figcaption>Finished look after service — tidy and consistent.</figcaption>
+      </figure>
+    </div>
+
+    <div class="gallery-cta">
+      <h2 style="margin:0 0 8px;">Want results like this?</h2>
+      <p style="margin:0 0 10px;">
+        Contact us for scheduling and pricing. We’ll confirm your lawn size, access, and service frequency to provide an accurate quote.
+      </p>
+      <p style="margin:0;">
+        <strong>Call/Text:</strong> 904-651-5711 &nbsp; | &nbsp;
+        <strong>Email:</strong> alex@atoblawncare.org &nbsp; | &nbsp;
+        <a href="contact.html">Request a Quote</a>
+      </p>
+    </div>
+  </main>
 
   <footer>
     <p>&copy; 2025 A to B Lawn Care LLC | 904-651-5711 | alex@atoblawncare.org</p>
   </footer>
+
+  <!-- ImageGallery structured data (helps SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ImageGallery",
+    "name": "A to B Lawn Care LLC Gallery",
+    "description": "Lawn care results and examples of mowing, edging, trimming, and cleanups in Jacksonville, FL.",
+    "author": {
+      "@type": "Organization",
+      "name": "A to B Lawn Care LLC"
+    }
+  }
+  </script>
+
+  <!-- LocalBusiness structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "A to B Lawn Care LLC",
+    "telephone": "+1-904-651-5711",
+    "email": "alex@atoblawncare.org",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Jacksonville",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    },
+    "areaServed": ["Jacksonville, FL", "Duval County, FL", "St. Johns County, FL"],
+    "url": "https://YOUR-DOMAIN-HERE.com"
+  }
+  </script>
 </body>
 </html>

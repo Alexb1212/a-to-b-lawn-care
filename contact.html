@@ -3,7 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Contact Us - A to B Lawn Care LLC</title>
+
+  <!-- SEO Title + Description -->
+  <title>Contact A to B Lawn Care LLC | Jacksonville, FL Lawn Care</title>
+  <meta name="description" content="Contact A to B Lawn Care LLC for lawn care in Jacksonville, FL. Request weekly or bi-weekly lawn mowing, shrub trimming, mulch installation, landscape bed weed control (beds only), and granular fertilization. Serving Duval & St. Johns counties." />
+
+  <!-- Optional: Location hints -->
+  <meta name="geo.region" content="US-FL" />
+  <meta name="geo.placename" content="Jacksonville" />
+
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -14,25 +22,63 @@
       <a href="about.html">About</a>
       <a href="services.html">Services</a>
       <a href="gallery.html">Gallery</a>
-      <a href="contact.html">Contact</a>
+      <a href="contact.html" aria-current="page">Contact</a>
     </nav>
   </header>
 
   <section class="hero">
-    <h1>Contact Us</h1>
-    <p>Let's get your lawn looking great!</p>
-    <p><strong>Phone:</strong> 904-651-5711</p>
-    <p><strong>Email:</strong> alex@atoblawncare.org</p>
+    <h1>Contact A to B Lawn Care LLC</h1>
+    <p>
+      Need reliable <strong>lawn care in Jacksonville, FL</strong>? Reach out today for scheduling and pricing.
+      We serve <strong>Duval</strong> and <strong>St. Johns</strong> counties.
+    </p>
+
+    <p><strong>Phone:</strong> <a href="tel:+19046515711">904-651-5711</a></p>
+    <p><strong>Email:</strong> <a href="mailto:alex@atoblawncare.org">alex@atoblawncare.org</a></p>
+
+    <h2>Request a Quote</h2>
+    <p class="muted" style="max-width: 700px; margin: 0 auto 16px;">
+      Tell us your address, desired frequency (weekly/bi-weekly), and any add-ons like shrub trimming, fertilization,
+      mulch, or bed weed control (beds only). We’ll respond as soon as possible.
+    </p>
+
+    <!-- Netlify form -->
     <form name="contact" method="POST" data-netlify="true">
+      <!-- Netlify recommended hidden field -->
+      <input type="hidden" name="form-name" value="contact" />
+
       <input type="text" name="name" placeholder="Your Name" required><br>
       <input type="email" name="email" placeholder="Your Email" required><br>
-      <textarea name="message" placeholder="Your Message" required></textarea><br>
+      <textarea name="message" placeholder="Your Message (include address + service frequency)" required></textarea><br>
       <button type="submit">Send Message</button>
     </form>
+
+    <p class="muted" style="max-width: 700px; margin: 16px auto 0;">
+      <strong>Note:</strong> Weed control services are limited to landscape beds only. No lawn herbicide applications are offered.
+    </p>
   </section>
 
   <footer>
     <p>&copy; 2025 A to B Lawn Care LLC | 904-651-5711 | alex@atoblawncare.org</p>
   </footer>
+
+  <!-- LocalBusiness structured data (helps SEO) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "A to B Lawn Care LLC",
+    "telephone": "+1-904-651-5711",
+    "email": "alex@atoblawncare.org",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Jacksonville",
+      "addressRegion": "FL",
+      "addressCountry": "US"
+    },
+    "areaServed": ["Jacksonville, FL", "Duval County, FL", "St. Johns County, FL"],
+    "url": "https://wwww.atoblawncare.org"
+  }
+  </script>
 </body>
 </html>
