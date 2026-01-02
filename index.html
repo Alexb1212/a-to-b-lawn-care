@@ -5,6 +5,45 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>A to B Lawn Care LLC</title>
   <link rel="stylesheet" href="style.css"/>
+
+  <!-- Calculator styles are scoped to .quote-calculator so they won't mess with your site -->
+  <style>
+    .quote-calculator-wrap{ padding:40px 16px; background:#f7f7f8; }
+    .quote-calculator{ max-width:980px; margin:0 auto; }
+    .quote-calculator .card{ background:#fff; border:1px solid #e5e7eb; border-radius:16px; padding:16px; box-shadow:0 1px 2px rgba(0,0,0,.04); }
+    .quote-calculator .grid{ display:grid; grid-template-columns:1.2fr 0.8fr; gap:16px; }
+    @media (max-width:900px){ .quote-calculator .grid{ grid-template-columns:1fr; } }
+    .quote-calculator h2{ font-size:16px; margin:0 0 10px; }
+    .quote-calculator .muted{ color:#6b7280; font-size:12px; }
+    .quote-calculator .row{ display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    @media (max-width:520px){ .quote-calculator .row{ grid-template-columns:1fr; } }
+    .quote-calculator label{ font-size:12px; color:#6b7280; display:block; margin:10px 0 6px; }
+    .quote-calculator input, .quote-calculator select{
+      width:100%; padding:10px 12px; border:1px solid #e5e7eb; border-radius:12px; font-size:14px; background:#fff;
+    }
+    .quote-calculator .check{ display:flex; align-items:center; gap:8px; margin:10px 0 0; }
+    .quote-calculator .check input{ width:auto; }
+    .quote-calculator .line{ height:1px; background:#e5e7eb; margin:12px 0; }
+    .quote-calculator .pill{ display:inline-block; padding:6px 10px; border-radius:999px; border:1px solid #e5e7eb; font-size:12px; color:#6b7280; }
+    .quote-calculator .big{ font-size:28px; font-weight:800; margin:6px 0; }
+    .quote-calculator ul{ margin:10px 0 0 18px; padding:0; }
+    .quote-calculator .btns{ display:flex; gap:10px; flex-wrap:wrap; margin-top:12px; }
+    .quote-calculator button{
+      border:1px solid #e5e7eb; background:#111827; color:#fff; padding:10px 12px; border-radius:12px; cursor:pointer; font-weight:600;
+    }
+    .quote-calculator button.secondary{ background:#fff; color:#111827; }
+    .quote-calculator .warn{ background:#fff7ed; border:1px solid #fed7aa; color:#9a3412; padding:10px 12px; border-radius:12px; font-size:12px; display:none; }
+    .quote-calculator .ctaBox{
+      border:1px solid #e5e7eb; border-radius:16px; padding:14px; margin-top:14px; background:#fff;
+      display:none;
+    }
+    .quote-calculator .ctaBox .ctaTitle{ font-weight:800; margin:0 0 6px; }
+    .quote-calculator .ctaBox a.ctaBtn{
+      display:inline-block; margin-top:10px; text-decoration:none;
+      background:#16a34a; color:#fff; padding:10px 12px; border-radius:12px; font-weight:700;
+    }
+    .quote-calculator .ctaBox .ctaNote{ margin-top:8px; }
+  </style>
 </head>
 <body>
   <header>
@@ -15,21 +54,399 @@
       <a href="services.html">Services</a>
       <a href="gallery.html">Gallery</a>
       <a href="contact.html">Contact</a>
+      <a href="quote.html">Instant Quote</a>
     </nav>
   </header>
 
   <section class="hero">
     <h1>Reliable, Professional Lawn Care in Jacksonville, FL</h1>
     <p>Serving Duval & St. Johns counties with pride – from our family to yours.</p>
-    
-    <a class="btn" href="https://www.yardbook.com/new_quote/cb58b5ba17432fd3598fbe0a6931ea136c2a6af7" target="_blank">
+
+    <a class="btn" href="https://www.yardbook.com/new_quote/cb58b5ba17432fd3598fbe0a6931ea136c2a6af7" target="_blank" rel="noopener">
       Request a Free Quote via Yardbook
     </a>
+  </section>
 
+  <!-- NEW: Embedded calculator on the homepage -->
+  <section class="quote-calculator-wrap" id="instant-quote">
+    <div class="quote-calculator">
+      <div class="card" style="margin-bottom:16px;">
+        <h2 style="margin:0;">Instant Quote Calculator</h2>
+        <div class="muted">Estimates only. Final price may adjust after seeing the property (gates, obstacles, slope, debris, heavy growth).</div>
+        <div class="muted" style="margin-top:6px;"><b>Minimum per cut:</b> $50. <b>Weed control:</b> landscape beds only (no lawn herbicide applications).</div>
+      </div>
+
+      <div class="grid">
+        <!-- INPUTS -->
+        <div class="card">
+          <h2>1) Basic mowing service</h2>
+
+          <label for="freq">Service frequency</label>
+          <select id="freq">
+            <option value="weekly">Weekly</option>
+            <option value="biweekly">Bi-weekly</option>
+            <option value="onetime">One-time cut</option>
+          </select>
+
+          <div class="row">
+            <div>
+              <label for="mode">How do you want to estimate lawn size?</label>
+              <select id="mode">
+                <option value="sqft">Enter square footage</option>
+                <option value="tier">Quick size tiers</option>
+              </select>
+            </div>
+
+            <div id="sqftWrap">
+              <label for="sqft">Approx. lawn square footage</label>
+              <input id="sqft" type="number" min="0" step="100" placeholder="e.g., 7000" />
+              <div class="muted">Tip: Zillow lot size is not the same as lawn size. Use a map measure if possible.</div>
+            </div>
+
+            <div id="tierWrap" style="display:none;">
+              <label for="tier">Lawn size tier</label>
+              <select id="tier">
+                <option value="small">Small (under 5,000 sq ft)</option>
+                <option value="medium" selected>Medium (5,000–8,000 sq ft)</option>
+                <option value="large">Large (8,000–12,000 sq ft)</option>
+                <option value="xl">XL (12,000–20,000 sq ft)</option>
+              </select>
+              <div class="muted">Tier pricing uses your settings below.</div>
+            </div>
+          </div>
+
+          <label for="access">Access & complexity</label>
+          <select id="access">
+            <option value="normal" selected>Normal access (typical yard)</option>
+            <option value="fenced">Fenced / narrow gate / lots of obstacles</option>
+            <option value="corner">Corner lot / extra edging</option>
+            <option value="both">Corner lot + fenced/obstacles</option>
+          </select>
+
+          <div class="line"></div>
+
+          <h2>2) Add-ons (optional)</h2>
+
+          <div class="row">
+            <div>
+              <div class="check">
+                <input id="bedspray" type="checkbox" />
+                <label for="bedspray" style="margin:0;">Bed weed spraying (landscape beds only)</label>
+              </div>
+              <div class="muted">Priced monthly (recommended for weekly clients).</div>
+
+              <div class="check">
+                <input id="fert" type="checkbox" />
+                <label for="fert" style="margin:0;">Fertilization (per application)</label>
+              </div>
+              <div class="muted">Granular fertilizer application (price per visit).</div>
+            </div>
+
+            <div>
+              <div class="check">
+                <input id="shrubs" type="checkbox" />
+                <label for="shrubs" style="margin:0;">Shrub trimming</label>
+              </div>
+              <label for="shrubsCount">How many shrubs?</label>
+              <input id="shrubsCount" type="number" min="0" step="1" value="0" />
+
+              <div class="check">
+                <input id="cleanup" type="checkbox" />
+                <label for="cleanup" style="margin:0;">Overgrowth / cleanup surcharge</label>
+              </div>
+              <div class="muted">For heavy growth, tall grass, or debris pickup.</div>
+            </div>
+          </div>
+
+          <div class="warn" id="warnBox"></div>
+
+          <div class="line"></div>
+
+          <h2>3) Settings (you can edit these)</h2>
+          <div class="muted">Defaults enforce your rule: <b>$50 minimum per cut</b>. Adjust once, and the calculator updates.</div>
+
+          <div class="row">
+            <div>
+              <label for="minCut">Minimum price per cut ($)</label>
+              <input id="minCut" type="number" min="0" step="1" value="50" />
+
+              <label for="basePer1k">Base rate per 1,000 sq ft ($)</label>
+              <input id="basePer1k" type="number" min="0" step="0.5" value="7.5" />
+
+              <label for="weeklyMult">Weekly multiplier</label>
+              <input id="weeklyMult" type="number" min="0" step="0.05" value="1.00" />
+            </div>
+
+            <div>
+              <label for="biweeklyMult">Bi-weekly multiplier (per visit)</label>
+              <input id="biweeklyMult" type="number" min="0" step="0.05" value="1.55" />
+
+              <label for="onetimeMult">One-time cut multiplier</label>
+              <input id="onetimeMult" type="number" min="0" step="0.05" value="1.85" />
+
+              <label for="complexityFee">Access/complexity add-on ($)</label>
+              <input id="complexityFee" type="number" min="0" step="1" value="10" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="bedSprayMonthly">Bed weed spraying (monthly $)</label>
+              <input id="bedSprayMonthly" type="number" min="0" step="1" value="20" />
+            </div>
+            <div>
+              <label for="fertPerApp">Fertilization (per application $)</label>
+              <input id="fertPerApp" type="number" min="0" step="1" value="75" />
+            </div>
+          </div>
+
+          <div class="row">
+            <div>
+              <label for="shrubsPer">Shrub trim (per shrub $)</label>
+              <input id="shrubsPer" type="number" min="0" step="1" value="12" />
+            </div>
+            <div>
+              <label for="cleanupFee">Cleanup / overgrowth surcharge ($)</label>
+              <input id="cleanupFee" type="number" min="0" step="1" value="25" />
+            </div>
+          </div>
+        </div>
+
+        <!-- OUTPUT -->
+        <div class="card">
+          <h2>Your estimate</h2>
+          <div class="pill" id="summaryPill">—</div>
+
+          <div class="line"></div>
+
+          <div class="muted">Estimated price per visit</div>
+          <div class="big" id="perVisit">$0</div>
+
+          <div class="muted">Estimated monthly total</div>
+          <div class="big" style="font-size:22px;" id="monthly">$0</div>
+
+          <div class="line"></div>
+
+          <div class="muted">Breakdown</div>
+          <ul id="breakdown"></ul>
+
+          <div class="btns">
+            <button id="copyBtn" type="button">Copy quote</button>
+            <button class="secondary" id="resetBtn" type="button">Reset</button>
+          </div>
+
+          <!-- CTA: Yardbook scheduling (shows once a quote is generated) -->
+          <div class="ctaBox" id="ctaBox">
+            <div class="ctaTitle">Like this estimate?</div>
+            <div class="muted">Click below to request service through Yardbook. We’ll confirm details and lock you into the schedule.</div>
+            <a
+              class="ctaBtn"
+              id="yardbookBtn"
+              href="https://www.yardbook.com/new_quote/cb58b5ba17432fd3598fbe0a6931ea136c2a6af7"
+              target="_blank"
+              rel="noopener"
+            >
+              Request / Schedule via Yardbook
+            </a>
+            <div class="muted ctaNote" id="ctaNote"></div>
+          </div>
+
+          <div class="line"></div>
+
+          <div class="muted">
+            <b>How it works:</b> price = max($minCut, lawnSizeRate) × frequency multiplier + any add-ons.
+            Monthly assumes 4.33 weeks/month for weekly, 2.17 visits/month for bi-weekly.
+          </div>
+        </div>
+      </div>
+    </div>
   </section>
 
   <footer>
     <p>&copy; 2025 A to B Lawn Care LLC | 904-651-5711 | alex@atoblawncare.org</p>
   </footer>
+
+  <script>
+    const $ = (id) => document.getElementById(id);
+    const money = (n) => n.toLocaleString(undefined, { style: "currency", currency: "USD" });
+
+    function visitsPerMonth(freq) {
+      if (freq === "weekly") return 4.33;
+      if (freq === "biweekly") return 2.17;
+      return 1;
+    }
+
+    function tierToSqft(tier) {
+      if (tier === "small") return 4000;
+      if (tier === "medium") return 6500;
+      if (tier === "large") return 10000;
+      if (tier === "xl") return 16000;
+      return 6500;
+    }
+
+    function complexityCount(access) {
+      if (access === "normal") return 0;
+      if (access === "both") return 2;
+      return 1;
+    }
+
+    function calc() {
+      const freq = $("freq").value;
+      const mode = $("mode").value;
+
+      const minCut = Number($("minCut").value || 0);
+      const basePer1k = Number($("basePer1k").value || 0);
+
+      const weeklyMult = Number($("weeklyMult").value || 1);
+      const biweeklyMult = Number($("biweeklyMult").value || 1);
+      const onetimeMult = Number($("onetimeMult").value || 1);
+
+      const complexityFee = Number($("complexityFee").value || 0);
+      const access = $("access").value;
+
+      const bedSprayMonthly = Number($("bedSprayMonthly").value || 0);
+      const fertPerApp = Number($("fertPerApp").value || 0);
+      const shrubsPer = Number($("shrubsPer").value || 0);
+      const cleanupFee = Number($("cleanupFee").value || 0);
+
+      let sqft = 0;
+      if (mode === "sqft") {
+        sqft = Number($("sqft").value || 0);
+      } else {
+        sqft = tierToSqft($("tier").value);
+      }
+
+      const lawnSizeRate = (sqft / 1000) * basePer1k;
+      let baseCut = Math.max(minCut, lawnSizeRate);
+
+      let mult = weeklyMult;
+      if (freq === "biweekly") mult = biweeklyMult;
+      if (freq === "onetime") mult = onetimeMult;
+
+      const cxCount = complexityCount(access);
+      const cxTotal = cxCount * complexityFee;
+
+      const addBeds = $("bedspray").checked ? bedSprayMonthly : 0; // monthly
+      const addFert = $("fert").checked ? fertPerApp : 0; // per visit
+      const shrubsOn = $("shrubs").checked;
+      const shrubsCount = Number($("shrubsCount").value || 0);
+      const addShrubs = shrubsOn ? shrubsCount * shrubsPer : 0; // per visit
+      const addCleanup = $("cleanup").checked ? cleanupFee : 0; // per visit
+
+      const perVisit = (baseCut * mult) + cxTotal + addFert + addShrubs + addCleanup;
+
+      const vpm = visitsPerMonth(freq);
+      const monthly = (freq === "onetime")
+        ? perVisit + addBeds
+        : (perVisit * vpm) + addBeds;
+
+      const freqLabel = (freq === "weekly") ? "Weekly" : (freq === "biweekly" ? "Bi-weekly" : "One-time");
+      const sizeLabel = mode === "sqft" ? (sqft ? `${sqft.toLocaleString()} sq ft` : "Size not entered") : `${$("tier").value.toUpperCase()} tier`;
+      $("summaryPill").textContent = `${freqLabel} • ${sizeLabel}`;
+
+      const items = [];
+      items.push(`Base cut (min applied): ${money(baseCut)} per visit`);
+      items.push(`Frequency multiplier: × ${mult.toFixed(2)}`);
+      if (cxTotal > 0) items.push(`Access/complexity: + ${money(cxTotal)} per visit`);
+      if (addFert > 0) items.push(`Fertilization: + ${money(addFert)} per application/visit`);
+      if (addShrubs > 0) items.push(`Shrub trimming: + ${money(addShrubs)} per visit (${shrubsCount} × ${money(shrubsPer)})`);
+      if (addCleanup > 0) items.push(`Cleanup/overgrowth: + ${money(addCleanup)} per visit`);
+      if (addBeds > 0) items.push(`Bed weed spraying (beds only): + ${money(addBeds)} per month`);
+      items.push(`Estimated visits/month: ${vpm.toFixed(2)}`);
+      $("breakdown").innerHTML = items.map(x => `<li>${x}</li>`).join("");
+
+      const warn = [];
+      if (mode === "sqft" && sqft === 0) warn.push("Enter an approximate lawn square footage or switch to Quick size tiers.");
+      if (shrubsOn && shrubsCount === 0) warn.push("You checked shrub trimming but shrub count is 0.");
+      const warnBox = $("warnBox");
+      if (warn.length) {
+        warnBox.style.display = "block";
+        warnBox.textContent = warn.join(" ");
+      } else {
+        warnBox.style.display = "none";
+        warnBox.textContent = "";
+      }
+
+      $("perVisit").textContent = money(perVisit);
+      $("monthly").textContent = money(monthly);
+
+      // Show CTA once there's enough info to generate a meaningful quote:
+      // - tier mode always has a size
+      // - sqft mode requires sqft > 0
+      const hasSize = (mode === "tier") || (mode === "sqft" && sqft > 0);
+      const ctaBox = $("ctaBox");
+      if (hasSize) {
+        ctaBox.style.display = "block";
+        const note =
+          `Estimate shown: ${money(perVisit)} per visit • ${money(monthly)} estimated monthly (${freqLabel}).`;
+        $("ctaNote").textContent = note;
+
+        // Optional: include the estimate in the Yardbook tab title (can't auto-fill Yardbook fields from here)
+        $("yardbookBtn").setAttribute("aria-label", `Request service via Yardbook. ${note}`);
+      } else {
+        ctaBox.style.display = "none";
+        $("ctaNote").textContent = "";
+      }
+
+      // Copy text
+      const quoteText =
+`A to B Lawn Care LLC – Estimate
+Frequency: ${freqLabel}
+Estimated per visit: ${money(perVisit)}
+Estimated monthly: ${money(monthly)}
+Includes: mowing/edge/trim/blow (basic service, $${minCut} minimum)
+Weed control: landscape beds only (no lawn herbicide applications)
+Add-ons: ${[
+  $("bedspray").checked ? "bed weed spraying (beds only)" : null,
+  $("fert").checked ? "fertilization" : null,
+  $("shrubs").checked ? `shrub trim (${shrubsCount})` : null,
+  $("cleanup").checked ? "cleanup/overgrowth" : null
+].filter(Boolean).join(", ") || "none"}
+Phone: 904-651-5711`;
+
+      $("copyBtn").onclick = async () => {
+        try {
+          await navigator.clipboard.writeText(quoteText);
+          $("copyBtn").textContent = "Copied!";
+          setTimeout(() => ($("copyBtn").textContent = "Copy quote"), 1200);
+        } catch (e) {
+          alert("Copy failed — you can manually select and copy from the page.");
+        }
+      };
+
+      $("resetBtn").onclick = () => {
+        $("freq").value = "weekly";
+        $("mode").value = "sqft";
+        $("sqft").value = "";
+        $("tier").value = "medium";
+        $("access").value = "normal";
+        $("bedspray").checked = false;
+        $("fert").checked = false;
+        $("shrubs").checked = false;
+        $("shrubsCount").value = 0;
+        $("cleanup").checked = false;
+        calc();
+        handleMode();
+      };
+    }
+
+    function handleMode() {
+      const mode = $("mode").value;
+      $("sqftWrap").style.display = mode === "sqft" ? "block" : "none";
+      $("tierWrap").style.display = mode === "tier" ? "block" : "none";
+      calc();
+    }
+
+    [
+      "freq","mode","sqft","tier","access",
+      "bedspray","fert","shrubs","shrubsCount","cleanup",
+      "minCut","basePer1k","weeklyMult","biweeklyMult","onetimeMult",
+      "complexityFee","bedSprayMonthly","fertPerApp","shrubsPer","cleanupFee"
+    ].forEach(id => $(id).addEventListener("input", calc));
+
+    $("mode").addEventListener("change", handleMode);
+
+    handleMode();
+  </script>
 </body>
 </html>
